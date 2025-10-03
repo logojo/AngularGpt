@@ -3,9 +3,19 @@
     <div class="grid gap-y-2">
         
         <!-- Cat Messages -->
+         <app-gpt-message text="Hola buen día en que puedo ayudarte" />
          @for (message of messages(); track $index) {
            @if( message.isGpt ) {
-                <app-gpt-message [text]="message.text" />
+                @if(message.info) {
+                  <app-message-orthography 
+                    [accuracy_percentage]="message.info.accuracy_percentage"
+                    [original_text]="message.info.original_text"
+                    [corrected_text]="message.info.corrected_text ?? ''"
+                    [corrections]="message.info.corrections"
+                  />
+                }@else {
+                  <app-gpt-message [text]="message.text" />
+                }
            }@else {
              <app-my-message [text]="message.text"  />
            }
@@ -18,23 +28,9 @@
   </div>
 
     <!-- MessageBox -->
-     <!-- <app-text-message-box 
+    <app-text-message-box 
       placeholder="Escribe lo que deseas"
       (onMessage)="handleMessage( $event )"
-     /> -->
-
-     <!-- <app-file-message-box 
-      (onMessage)="handleMessageWithFile( $event )"
-     /> -->
-
-     <app-select-message-box 
-      (onMessage)="handleMessageWithSelect( $event )"
-      [options]="[
-        {id: '1', text: 'option 1' },
-        {id: '2', text: 'option 2' }
-
-      ]"
-     />
-     
+    />
 
 </div>

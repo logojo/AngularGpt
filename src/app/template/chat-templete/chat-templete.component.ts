@@ -3,7 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { FileMessageBoxComponent, GptMessageComponent, MyMessageComponent, SelectMessageBoxComponent, TextMessageBoxComponent, TextMessageBoxEvent, TextMessageEvent, TypingLouderComponent } from "@components/index";
 import { Message } from '@interfaces/message.interface';
-import { OpenAiService } from 'app/services/openai.service';
+import { OpenAiService } from 'app/presentation/services/openai.service';
 
 @Component({
   selector: 'app-chat-templete',
